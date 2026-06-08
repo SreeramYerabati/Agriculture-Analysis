@@ -1,171 +1,272 @@
-# Agriculture Analytics Using AWS S3, Snowflake SQL & Power BI
+# Agriculture Analytics | AWS S3, Snowflake SQL & Power BI
 
 ## Project Overview
 
-This project demonstrates an end-to-end cloud analytics pipeline using AWS S3, Snowflake, SQL, and Power BI.
+This project demonstrates the design and implementation of an end-to-end cloud-based data analytics pipeline using AWS S3, Snowflake, SQL, and Power BI.
 
-Agricultural data was stored in Amazon S3 and ingested into Snowflake through Storage Integrations and External Stages. SQL transformations and feature engineering techniques were applied to prepare the dataset for analysis. The processed data was then visualized using Power BI to uncover insights related to crop productivity, environmental factors, and agricultural performance.
+The objective was to analyze agricultural production data and identify the impact of environmental and operational factors such as rainfall, temperature, soil type, irrigation methods, seasonal variations, and geographical locations on crop yields and revenue generation.
 
-The primary objective was to analyze how rainfall, temperature, humidity, irrigation methods, soil types, and seasonal variations impact crop yields and revenue generation.
+The project covers the complete analytics lifecycle, including cloud storage, data ingestion, data transformation, feature engineering, exploratory analysis, business intelligence reporting, and dashboard development.
 
 ---
 
 ## Technology Stack
 
-• Amazon S3
-
-• Snowflake Data Warehouse
-
-• SQL
-
-• Power BI
-
-• GitHub
-
----
-
-## Architecture
-
-```text
-Agriculture Dataset (CSV)
-            │
-            ▼
-       AWS S3 Bucket
-            │
-            ▼
- Snowflake Storage Integration
-            │
-            ▼
-      External Stage
-            │
-            ▼
-      Snowflake Tables
-            │
-            ▼
- SQL Transformations & Analysis
-            │
-            ▼
-      Power BI Dashboard
-            │
-            ▼
-      Business Insights
-```
+| Technology | Purpose                                 |
+| ---------- | --------------------------------------- |
+| AWS S3     | Cloud Data Storage                      |
+| AWS IAM    | Access Management & Security            |
+| Snowflake  | Cloud Data Warehouse                    |
+| SQL        | Data Transformation & Analysis          |
+| Power BI   | Dashboarding & Visualization            |
+| GitHub     | Project Documentation & Version Control |
 
 ---
 
-## Data Engineering
+## Solution Architecture
 
-### Storage Integration
+Agricultural Dataset (CSV)
 
-Configured a Snowflake Storage Integration to establish secure connectivity between Snowflake and Amazon S3.
+↓
 
-### Data Ingestion
+AWS S3 Bucket
 
-Created an External Stage and loaded CSV data into Snowflake using the `COPY INTO` command.
+↓
 
-### Data Validation
+AWS IAM Role Configuration
 
-Performed record validation and dataset quality checks after ingestion.
+↓
+
+Snowflake Storage Integration
+
+↓
+
+Snowflake External Stage
+
+↓
+
+Snowflake Data Warehouse
+
+↓
+
+SQL Transformations & Feature Engineering
+
+↓
+
+Power BI Dashboard
+
+↓
+
+Business Insights
 
 ---
 
-## Data Transformation
+## Data Pipeline Implementation
 
-### Feature Engineering
+### Step 1: Data Storage
 
-Created year-based categories:
+Created an Amazon S3 bucket and uploaded the agricultural dataset to serve as the centralized cloud storage layer.
 
-| Year Range | Group |
-| ---------- | ----- |
-| 2004–2009  | Y1    |
-| 2010–2015  | Y2    |
-| 2016–2019  | Y3    |
+### Step 2: IAM Role Configuration
+
+Configured an AWS IAM Role with S3 access permissions to enable secure communication between Snowflake and Amazon S3.
+
+### Step 3: Snowflake Storage Integration
+
+Created a Snowflake Storage Integration object to establish a secure connection with AWS S3.
+
+Key configuration included:
+
+• IAM Role ARN
+
+• Storage Provider (AWS S3)
+
+• Allowed Storage Locations
+
+### Step 4: Security Configuration
+
+Retrieved the Snowflake-generated IAM User ARN and External ID and updated the AWS IAM Trust Relationship accordingly.
+
+This established secure cross-platform authentication between Snowflake and AWS.
+
+### Step 5: Data Ingestion
+
+Created an External Stage and loaded CSV files from S3 into Snowflake using the COPY INTO command.
+
+### Step 6: Data Validation
+
+Validated successful ingestion through record-count verification and exploratory queries.
+
+### Step 7: Data Transformation
+
+Applied SQL transformations, feature engineering, and analytical queries to prepare the dataset for reporting and visualization.
+
+---
+
+## Dataset Attributes
+
+The dataset contains agricultural production information including:
+
+• Year
+
+• Location
+
+• Area
+
+• Rainfall
+
+• Temperature
+
+• Soil Type
+
+• Irrigation Method
+
+• Yield
+
+• Humidity
+
+• Crop Type
+
+• Price
+
+• Season
+
+---
+
+## Data Transformation & Feature Engineering
+
+### Year-Based Categorization
+
+Created custom year groups:
+
+| Group | Year Range  |
+| ----- | ----------- |
+| Y1    | 2004 - 2009 |
+| Y2    | 2010 - 2015 |
+| Y3    | 2016 - 2019 |
 
 ### Rainfall Categorization
 
-| Rainfall Range | Category |
-| -------------- | -------- |
-| 255–1200       | Low      |
-| 1201–2000      | Medium   |
-| 2001–4103      | High     |
+Created rainfall categories to support environmental impact analysis:
+
+| Category | Rainfall Range |
+| -------- | -------------- |
+| Low      | 255 - 1200     |
+| Medium   | 1201 - 2000    |
+| High     | 2001 - 4103    |
 
 ### Scenario Analysis
 
-• Simulated a 10% increase in rainfall values.
+Performed simulation-based transformations:
 
-• Simulated a 10% reduction in cultivated area.
+• Increased rainfall values by 10%
+
+• Reduced cultivated area by 10%
+
+to evaluate potential impacts on agricultural outcomes.
 
 ---
 
-## Business Analysis
-
-The following analytical queries were developed using Snowflake SQL:
+## Business Analysis Performed
 
 ### Rainfall Impact Analysis
 
-Determined which rainfall category produces the highest average crop yield.
+Evaluated how rainfall categories influence average crop yields.
 
 ### Crop Performance Analysis
 
-Identified top-performing crops based on average and total yield.
+Identified top-performing crops based on yield metrics.
 
 ### Seasonal Analysis
 
-Evaluated crop performance across Kharif, Rabi, and Zaid seasons.
+Analyzed agricultural productivity across Kharif, Rabi, and Zaid seasons.
 
 ### Crop vs Season Analysis
 
-Analyzed which crops perform best within each season.
+Determined which crops perform best within specific seasons.
 
-### Regional Analysis
+### Location Analysis
 
-Identified locations with the highest agricultural productivity.
+Compared agricultural productivity across multiple regions.
 
 ### Irrigation Analysis
 
-Compared crop yields across different irrigation methods.
+Assessed the impact of irrigation methods on crop yields.
 
 ### Soil Type Analysis
 
-Evaluated the impact of soil conditions on crop production.
+Evaluated how soil conditions affect agricultural output.
 
 ### Productivity Trend Analysis
 
-Measured changes in agricultural productivity across multiple year groups.
+Measured yield performance across different year groups.
 
 ### Revenue Analysis
 
-Calculated crop-level revenue using production yield and pricing information.
+Calculated crop-level revenue using yield and pricing information.
 
 ---
 
 ## Power BI Dashboard
 
-The dashboard provides interactive visualizations covering:
+Interactive dashboards were developed in Power BI to visualize:
 
-• Rainfall Analysis
+### Rainfall Analysis
 
-• Temperature Analysis
+• Average Rainfall by Year
 
-• Humidity Analysis
+• Average Rainfall by Season
 
-• Yield Analysis
+• Average Rainfall by Crop
 
-### Dashboard Insights
+• Average Rainfall by Location
 
-• High-rainfall regions generally demonstrated stronger agricultural output.
+### Temperature Analysis
 
-• Cotton emerged as one of the highest-yielding crops.
+• Average Temperature by Year
 
-• Certain regions consistently outperformed others in productivity.
+• Average Temperature by Season
 
-• Seasonal patterns significantly influenced crop performance.
+• Average Temperature by Crop
 
-• Environmental conditions showed measurable relationships with yield outcomes.
+• Average Temperature by Location
+
+### Humidity Analysis
+
+• Average Humidity by Year
+
+• Average Humidity by Season
+
+• Average Humidity by Crop
+
+• Average Humidity by Location
+
+### Yield Analysis
+
+• Average Yield by Year
+
+• Average Yield by Season
+
+• Average Yield by Crop
+
+• Average Yield by Location
 
 ---
 
-## Note
+## Key Insights
 
-This repository is a portfolio project created for educational and analytical purposes.
-Sensitive cloud identifiers such as AWS account IDs, IAM role ARNs, bucket names, and related infrastructure details have been anonymized for security reasons.
+• High-rainfall regions generally demonstrated stronger crop productivity.
+
+• Cotton emerged as one of the highest-yielding crops.
+
+• Seasonal patterns significantly influenced agricultural performance.
+
+• Certain locations consistently outperformed others in yield generation.
+
+• Environmental conditions showed measurable relationships with agricultural output.
+
+---
+
+## Disclaimer
+
+This repository is intended for educational and portfolio purposes. Sensitive cloud identifiers, IAM role details, account identifiers, bucket names, and infrastructure-specific configurations have been anonymized for security reasons.

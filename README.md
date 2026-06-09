@@ -152,8 +152,8 @@ Created rainfall categories to support environmental impact analysis:
 | Category | Rainfall Range |
 | -------- | -------------- |
 | Low      | 255 - 1200     |
-| Medium   | 1201 - 2000    |
-| High     | 2001 - 4103    |
+| Medium   | < 2000         |
+| High     | < 4103         |
 
 ### Scenario Analysis
 

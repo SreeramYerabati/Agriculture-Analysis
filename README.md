@@ -1,272 +1,143 @@
-# Agriculture Analytics | AWS S3, Snowflake SQL & Power BI
+# Agriculture Analytics Dashboard
 
-## Project Overview
+## Dashboard Overview
 
-This project demonstrates the design and implementation of an end-to-end cloud-based data analytics pipeline using AWS S3, Snowflake, SQL, and Power BI.
+This project presents an end-to-end Agriculture Analytics solution developed using **AWS S3, Snowflake SQL, and Power BI**. The objective is to analyze agricultural production data and understand how environmental factors such as rainfall, temperature, humidity, seasonality, crop type, and geographical location influence crop productivity.
 
-The objective was to analyze agricultural production data and identify the impact of environmental and operational factors such as rainfall, temperature, soil type, irrigation methods, seasonal variations, and geographical locations on crop yields and revenue generation.
-
-The project covers the complete analytics lifecycle, including cloud storage, data ingestion, data transformation, feature engineering, exploratory analysis, business intelligence reporting, and dashboard development.
+The dashboard provides interactive visualizations that help identify agricultural trends, compare crop performance, evaluate regional productivity, and support data-driven decision-making for agricultural planning.
 
 ---
 
-## Technology Stack
+# Problem Statement
 
-| Technology | Purpose                                 |
-| ---------- | --------------------------------------- |
-| AWS S3     | Cloud Data Storage                      |
-| AWS IAM    | Access Management & Security            |
-| Snowflake  | Cloud Data Warehouse                    |
-| SQL        | Data Transformation & Analysis          |
-| Power BI   | Dashboarding & Visualization            |
-| GitHub     | Project Documentation & Version Control |
+Agricultural productivity is influenced by several environmental and operational factors. Understanding how rainfall, temperature, humidity, seasonal variations, and geographical conditions affect crop yield is essential for improving farming strategies and resource utilization.
 
----
+This dashboard provides comprehensive insights into agricultural performance by analyzing:
 
-## Solution Architecture
+* Rainfall trends
+* Temperature patterns
+* Humidity variations
+* Crop yield performance
+* Seasonal productivity
+* Regional agricultural performance
 
-Agricultural Dataset (CSV)
-
-↓
-
-AWS S3 Bucket
-
-↓
-
-AWS IAM Role Configuration
-
-↓
-
-Snowflake Storage Integration
-
-↓
-
-Snowflake External Stage
-
-↓
-
-Snowflake Data Warehouse
-
-↓
-
-SQL Transformations & Feature Engineering
-
-↓
-
-Power BI Dashboard
-
-↓
-
-Business Insights
+The analysis helps identify high-performing crops, productive regions, and seasonal trends that contribute to improved agricultural planning.
 
 ---
 
-## Data Pipeline Implementation
+# Tools & Technologies
 
-### Step 1: Data Storage
-
-Created an Amazon S3 bucket and uploaded the agricultural dataset to serve as the centralized cloud storage layer.
-
-### Step 2: IAM Role Configuration
-
-Configured an AWS IAM Role with S3 access permissions to enable secure communication between Snowflake and Amazon S3.
-
-### Step 3: Snowflake Storage Integration
-
-Created a Snowflake Storage Integration object to establish a secure connection with AWS S3.
-
-Key configuration included:
-
-• IAM Role ARN
-
-• Storage Provider (AWS S3)
-
-• Allowed Storage Locations
-
-### Step 4: Security Configuration
-
-Retrieved the Snowflake-generated IAM User ARN and External ID and updated the AWS IAM Trust Relationship accordingly.
-
-This established secure cross-platform authentication between Snowflake and AWS.
-
-### Step 5: Data Ingestion
-
-Created an External Stage and loaded CSV files from S3 into Snowflake using the COPY INTO command.
-
-### Step 6: Data Validation
-
-Validated successful ingestion through record-count verification and exploratory queries.
-
-### Step 7: Data Transformation
-
-Applied SQL transformations, feature engineering, and analytical queries to prepare the dataset for reporting and visualization.
+* AWS S3
+* Snowflake SQL
+* SQL
+* Power BI Desktop
 
 ---
 
-## Dataset Attributes
+# Dataset
 
 The dataset contains agricultural production information including:
 
-• Year
-
-• Location
-
-• Area
-
-• Rainfall
-
-• Temperature
-
-• Soil Type
-
-• Irrigation Method
-
-• Yield
-
-• Humidity
-
-• Crop Type
-
-• Price
-
-• Season
+* Year
+* Location
+* Area
+* Rainfall
+* Temperature
+* Humidity
+* Soil Type
+* Irrigation Method
+* Crop Type
+* Yield
+* Price
+* Season
 
 ---
 
-## Data Transformation & Feature Engineering
+# Data Preparation
 
-### Year-Based Categorization
+The following data preparation steps were performed before building the dashboard:
 
-Created custom year groups:
-
-| Group | Year Range  |
-| ----- | ----------- |
-| Y1    | 2004 - 2009 |
-| Y2    | 2010 - 2015 |
-| Y3    | 2016 - 2019 |
-
-### Rainfall Categorization
-
-Created rainfall categories to support environmental impact analysis:
-
-| Category | Rainfall Range |
-| -------- | -------------- |
-| Low      | 255 - 1200     |
-| Medium   | < 2000         |
-| High     | < 4103         |
-
-### Scenario Analysis
-
-Performed simulation-based transformations:
-
-• Increased rainfall values by 10%
-
-• Reduced cultivated area by 10%
-
-to evaluate potential impacts on agricultural outcomes.
+* Uploaded the agricultural dataset to AWS S3.
+* Configured AWS IAM Roles for secure integration.
+* Connected AWS S3 with Snowflake using Storage Integration.
+* Loaded data into Snowflake using the **COPY INTO** command.
+* Validated imported records using SQL queries.
+* Performed SQL-based data cleaning and transformation.
+* Created additional categories for Year and Rainfall analysis.
+* Connected Snowflake to Power BI.
+* Designed interactive dashboards for agricultural analysis.
 
 ---
 
-## Business Analysis Performed
+# Dashboard Pages
 
-### Rainfall Impact Analysis
+## Page 1 — Rainfall Analysis
 
-Evaluated how rainfall categories influence average crop yields.
+This page analyzes rainfall patterns across years, seasons, crop types, and locations to understand rainfall distribution and regional variations.
 
-### Crop Performance Analysis
+**Visualizations include:**
 
-Identified top-performing crops based on yield metrics.
+* Average Rainfall by Year
+* Average Rainfall by Season
+* Average Rainfall by Crop
+* Average Rainfall by Location
 
-### Seasonal Analysis
-
-Analyzed agricultural productivity across Kharif, Rabi, and Zaid seasons.
-
-### Crop vs Season Analysis
-
-Determined which crops perform best within specific seasons.
-
-### Location Analysis
-
-Compared agricultural productivity across multiple regions.
-
-### Irrigation Analysis
-
-Assessed the impact of irrigation methods on crop yields.
-
-### Soil Type Analysis
-
-Evaluated how soil conditions affect agricultural output.
-
-### Productivity Trend Analysis
-
-Measured yield performance across different year groups.
-
-### Revenue Analysis
-
-Calculated crop-level revenue using yield and pricing information.
-
+<img width="748" height="421" alt="Image" src="https://github.com/user-attachments/assets/64905f7a-5dd9-4874-a087-f8490f650ec6" />
 ---
 
-## Power BI Dashboard
+## Page 2 — Temperature Analysis
 
-Interactive dashboards were developed in Power BI to visualize:
+This page focuses on temperature variations across years, seasons, crops, and locations to evaluate climatic conditions affecting agricultural production.
 
-### Rainfall Analysis
+**Visualizations include:**
 
-• Average Rainfall by Year
+* Average Temperature by Year
+* Average Temperature by Season
+* Average Temperature by Crop
+* Average Temperature by Location
 
-• Average Rainfall by Season
-
-• Average Rainfall by Crop
-
-• Average Rainfall by Location
-
-### Temperature Analysis
-
-• Average Temperature by Year
-
-• Average Temperature by Season
-
-• Average Temperature by Crop
-
-• Average Temperature by Location
-
-### Humidity Analysis
-
-• Average Humidity by Year
-
-• Average Humidity by Season
-
-• Average Humidity by Crop
-
-• Average Humidity by Location
-
-### Yield Analysis
-
-• Average Yield by Year
-
-• Average Yield by Season
-
-• Average Yield by Crop
-
-• Average Yield by Location
-
+<img width="735" height="421" alt="Image" src="https://github.com/user-attachments/assets/1e317377-29a2-423b-a589-8c2d0b81ab25" />
 ---
 
-## Key Insights
+## Page 3 — Humidity Analysis
 
-• High-rainfall regions generally demonstrated stronger crop productivity.
+This page provides insights into humidity trends across years, seasons, crops, and locations to analyze environmental consistency throughout the dataset.
 
-• Cotton emerged as one of the highest-yielding crops.
+**Visualizations include:**
 
-• Seasonal patterns significantly influenced agricultural performance.
+* Average Humidity by Year
+* Average Humidity by Season
+* Average Humidity by Crop
+* Average Humidity by Location
 
-• Certain locations consistently outperformed others in yield generation.
-
-• Environmental conditions showed measurable relationships with agricultural output.
-
+<img width="741" height="420" alt="Image" src="https://github.com/user-attachments/assets/5abaa1bc-bd2b-4289-acf6-5d4942a122a8" />
 ---
 
-## Disclaimer
+## Page 4 — Yield Analysis
 
-This repository is intended for educational and portfolio purposes. Sensitive cloud identifiers, IAM role details, account identifiers, bucket names, and infrastructure-specific configurations have been anonymized for security reasons.
+This page evaluates agricultural productivity by comparing crop yields across years, seasons, crop types, and geographical locations to identify the highest-performing crops and regions.
+
+**Visualizations include:**
+
+* Average Yield by Year
+* Average Yield by Season
+* Average Yield by Crop
+* Average Yield by Location
+
+<img width="738" height="422" alt="Image" src="https://github.com/user-attachments/assets/b9bfe944-100d-47db-9737-e77ec81ea5ef" />
+---
+
+# Key Insights
+
+* **Paddy** recorded the highest average rainfall (**3.5K mm**), while **Bangalore** received the highest average rainfall among all locations (**3.8K mm**).
+
+* **Kharif** and **Zaid** seasons recorded the highest average temperature (**72°C**), while **Ginger** experienced the highest average crop temperature (**79.1°C**).
+
+* Average humidity remained stable across all years, seasons, crops, and locations, with values consistently around **55–56%**.
+
+* **Cotton** achieved the highest average yield (**51.2K**), followed by **Coconut (34.2K)** and **Ginger (26.3K)**.
+
+* **Rabi** season recorded the highest average yield (**24.9K**), outperforming **Zaid (22.0K)** and **Kharif (20.2K)**.
+
+* **Kodagu** recorded the highest regional yield (**28.7K**), whereas **Davangere** recorded the lowest (**11.8K**), highlighting significant regional productivity differences.
+
